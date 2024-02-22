@@ -16,7 +16,7 @@ const orderModel = (sequelize, DataTypes) =>{
         },
         status:{
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         rating: {
             type: DataTypes.INTEGER,

@@ -14,8 +14,9 @@ const tableModel = (sequelize, DataTypes) => {
             allowNull: false
         },
         status:{
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
         },
         deletedAt:{
             type: DataTypes.DATE,
