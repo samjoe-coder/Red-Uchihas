@@ -127,3 +127,5 @@ const deleteHotel = async (req,res) => {
             });
         });
 }
+
+export default {createHotel, findAllHotels, findHotelById, updateHotel, deleteHotel};
