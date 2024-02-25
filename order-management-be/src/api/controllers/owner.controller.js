@@ -1,21 +1,27 @@
 import ownerCreation from "../services/owner.service.js";
 import { v4 as uuidv4 } from 'uuid';
+import ownerValidation from "../services/joiValidation.js";
 
+function validateRequestBody(reqBody) {
+    return ownerValidation.validate(reqBody, { abortEarly: false });
+}
 const createOwner = async (req, res) => {
     try{
+
+        const { error, value } = validateRequestBody(req.body);
+        if (error) {
+            return res.status(400).json({ message: 'Validation error', details: error.details });
+        }
+
         const restaurantOwner = {
             id: uuidv4(),
-            name: req.body.name,
-            email: req.body.email,
-            phone: req.body.phone,
-            password: req.body.password,
-            address: req.body.address || null,
-            role: req.body.role || 'owner'
+            name: value.name,
+            email: value.email,
+            phone: value.phone,
+            password: value.password,
+            address: value.address || null,
+            role: value.role || 'owner'
         };
-
-        if(!restaurantOwner.name || !restaurantOwner.email || !restaurantOwner.phone || !restaurantOwner.password){
-            return res.status(400).json({message: 'Insufficient data'});
-        }
 
         const newOwner = await ownerCreation(restaurantOwner);
 
