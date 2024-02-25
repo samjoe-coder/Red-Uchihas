@@ -1,4 +1,4 @@
-import db from "../../init_model.js";
+import db from "../../config/database.js";
 
 const Owner = db.owners;
 

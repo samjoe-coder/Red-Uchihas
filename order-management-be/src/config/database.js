@@ -36,7 +36,6 @@ const createDatabase = async () => {
 
 // Define all database models
 const defineModels = (sequelize) => {
-    const db = {};
     db.Sequelize = Sequelize;
     db.owners = ownerModel(sequelize, DataTypes);
     db.customers = customerModel(sequelize, DataTypes);
@@ -55,14 +54,16 @@ const initDb = async () => {
         const sequelize = await createDatabase();
 
         // Define and associate models
-        const db = defineModels(sequelize);
+        defineModels(sequelize);
 
         // Sync models with database
         await sequelize.sync({ force: false });
         console.log("🔄 Database synchronized successfully");
+
     } catch (error) {
         throw error;
     }
 }
 
+export const db = {};
 export default initDb;

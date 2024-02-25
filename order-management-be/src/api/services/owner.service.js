@@ -1,5 +1,5 @@
 import ownerRepo from "../repositories/owner.repo.js";
-import { generateSalt, hashPassword } from "../../config/cryptoJS.js";
+import { generateSalt, hashPassword } from "../../config/passwordHashing.js";
 
 const ownerCreation = async (restaurantOwner) => {
 
