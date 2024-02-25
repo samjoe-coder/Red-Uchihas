@@ -1,4 +1,4 @@
-import ownerRepo from "../repositories/owner.repo.js";
+import create from "../repositories/owner.repo.js";
 import { generateSalt, hashPassword } from "../../config/passwordHashing.js";
 
 const ownerCreation = async (restaurantOwner) => {
@@ -8,7 +8,7 @@ const ownerCreation = async (restaurantOwner) => {
 
     restaurantOwner.password = hashedPassword;
 
-    return await ownerRepo(restaurantOwner);
+    return await create(restaurantOwner);
 }
 
 export default ownerCreation;

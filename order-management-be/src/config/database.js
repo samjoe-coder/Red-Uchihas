@@ -66,5 +66,4 @@ const initDb = async () => {
     }
 }
 
-export const db = {};
 export default initDb;

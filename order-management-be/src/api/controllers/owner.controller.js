@@ -1,6 +1,7 @@
 import ownerCreation from "../services/owner.service.js";
 import { v4 as uuidv4 } from 'uuid';
-import ownerValidation from "../services/joiValidation.js";
+import ownerValidation from "../validations/owner.validations.js";
+import { httpCodes } from "../utils/common.js";
 
 function validateRequestBody(reqBody) {
     return ownerValidation.validate(reqBody, { abortEarly: false });
@@ -10,7 +11,8 @@ const createOwner = async (req, res) => {
 
         const { error, value } = validateRequestBody(req.body);
         if (error) {
-            return res.status(400).json({ message: 'Validation error', details: error.details });
+            let statusCode = 400;
+            return res.status(statusCode).json({ message: httpCodes[statusCode], details: error.details });
         }
 
         const restaurantOwner = {
@@ -26,14 +28,17 @@ const createOwner = async (req, res) => {
         const newOwner = await ownerCreation(restaurantOwner);
 
         if(newOwner){
-            return res.status(201).json({message: 'Owner created successfully'});
+            let statusCode = 201;
+            return res.status(statusCode).json({message: httpCodes[statusCode]});
         }
         else{
-            return res.status(500).json({message: 'Error creating owner'});
+            let statusCode = 500;
+            return res.status(statusCode).json({message: httpCodes[statusCode]});
         }
     }
     catch(error){
-        return res.status(500).json({ message: 'Internal server error', error: error.message });
+        let statusCode = 500;
+        return res.status(statusCode).json({ message: httpCodes[statusCode], error: error.message });
     }
 }
 

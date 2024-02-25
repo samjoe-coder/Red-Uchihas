@@ -1,9 +1,6 @@
-import db from "../../config/database.js";
+import { db } from "../../config/database.js";
 
-const Owner = db.owners;
-
-const ownerRepo = async (restaurantOwner) => {
-    return await Owner.create(restaurantOwner);
+const create = async (restaurantOwner) => {
+    return await db.owners.create(restaurantOwner);
 }
-
-export default ownerRepo;
+export default create;
