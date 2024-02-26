@@ -1,4 +1,4 @@
-import create from "../repositories/owner.repo.js";
+import { create } from "../repositories/owner.repo.js";
 import { generateSalt, hashPassword } from "../../config/passwordHashing.js";
 
 const ownerCreation = async (restaurantOwner) => {
