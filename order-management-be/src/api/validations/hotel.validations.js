@@ -15,4 +15,12 @@ const validateHotel = (hotel) => {
     return hotelValidation.validate(hotel, { abortEarly: false });
 }
 
-export default validateHotel;
+const hotelUpdateValidation = Joi.object({
+    id: uuid,
+});
+
+const validateHotelUpdate = (hotel) => {
+    return hotelUpdateValidation.validate(hotel, { abortEarly: false });
+}
+
+export { validateHotel, validateHotelUpdate };

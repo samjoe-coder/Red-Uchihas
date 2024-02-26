@@ -36,14 +36,6 @@ const hotelModel = (sequelize, DataTypes) => (
         deletedAt: {
             type: DataTypes.DATE,
             allowNull: true
-        },
-        ownerId: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            references: {
-                model: 'owners',
-                key: 'id'
-            }
         }
     })
 )

@@ -1,15 +1,15 @@
-import { create } from "../repositories/hotel.repo.js";
+import { create, update } from "../repositories/hotel.repo.js";
 import { sendHotelActivationEmail } from "../emails/hotelActivation.email.js"
 
 const hotelCreation = async (hotel) => {
 
     const data = await create(hotel);
-    console.log(data);
-
+    
     if(data){
-        // send a email to the onwer
         try{
-            await sendHotelActivationEmail(hotel);
+
+            await sendHotelActivationEmail(data);
+
         }
         catch(e){
             console.log(e);
@@ -20,4 +20,9 @@ const hotelCreation = async (hotel) => {
 
 }
 
-export { hotelCreation };
+const hotelUpdate = async (hotel) => {
+    hotel.active = true;
+    return await update(hotel);
+}
+
+export { hotelCreation, hotelUpdate };
