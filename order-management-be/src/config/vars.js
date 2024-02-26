@@ -14,7 +14,16 @@ export default {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     dialect: process.env.DB_DIALECT
+  },
+
+  email: {
+    host: process.env.EMAIL_HOST,
+    port: Number(process.env.EMAIL_PORT),
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
+    from: process.env.EMAIL_FROM
   }
+
 };
 
 
