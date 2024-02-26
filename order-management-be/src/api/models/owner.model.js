@@ -22,7 +22,7 @@ const ownerModel = (sequelize, DataTypes) => (
         },
         address: {
             type: DataTypes.TEXT,
-            allowNull: true
+            allowNull: false
         },
         role: {
             type: DataTypes.STRING,
