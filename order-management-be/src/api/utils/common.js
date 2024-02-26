@@ -1,7 +1,9 @@
+import Joi from 'joi';
+
 const httpCodes = {
     // Success codes
     200: "OK",
-    201: "User created successfully",
+    201: "Created successfully",
     202: "Accepted",
     // Client error codes
     400: "Bad Request",
@@ -47,4 +49,7 @@ const httpCodes = {
     511: "Network Authentication Required",
 };
 
-export { httpCodes };
+const phoneValidation = Joi.string().pattern(/^[0-9]{10}$/).required().messages({
+'string.pattern.base': 'Phone number must contain 10 digits'}); 
+
+export { httpCodes, phoneValidation };

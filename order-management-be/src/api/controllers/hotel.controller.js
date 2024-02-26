@@ -1,34 +1,32 @@
 import { v4 as uuidv4 } from 'uuid';
-import ownerCreation from "../services/owner.service.js";
-import ownerValidation from "../validations/owner.validations.js";
+import { hotelCreation } from "../services/hotel.service.js";
+import validateHotel from "../validations/hotel.validations.js";
 import { httpCodes } from "../utils/common.js";
 
 function validateRequestBody(reqBody) {
-    return ownerValidation.validate(reqBody, { abortEarly: false });
+    return hotelValidation.validate(reqBody, { abortEarly: false });
 }
-
-const createOwner = async (req, res) => {
+const createHotel = async (req, res) => {
     try{
-
-        const { error, value } = validateRequestBody(req.body);
+        
+        const { error, value } = validateHotel(req.body);
         if (error) {
             let statusCode = 400;
             return res.status(statusCode).json({ message: httpCodes[statusCode], details: error.details });
         }
 
-        const restaurantOwner = {
+        const hotel = {
             id: uuidv4(),
             name: value.name,
-            email: value.email,
-            phone: value.phone,
-            password: value.password,
-            address: value.address || null,
-            role: value.role || 'owner'
+            address: value.address,
+            description: value.description,
+            customeCareNumber: value.customeCareNumber,
+            ownerId: value.ownerId
         };
 
-        const newOwner = await ownerCreation(restaurantOwner);
+        const newHotel = await hotelCreation(hotel);
 
-        if(newOwner){
+        if(newHotel){
             let statusCode = 201;
             return res.status(statusCode).json({message: httpCodes[statusCode]});
         }
@@ -43,4 +41,4 @@ const createOwner = async (req, res) => {
     }
 }
 
-export default createOwner;
+export default createHotel;

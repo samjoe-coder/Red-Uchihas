@@ -27,7 +27,7 @@ const hotelModel = (sequelize, DataTypes) => (
         active: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: true
+            defaultValue: false
         },  
         logo: {
             type: DataTypes.STRING,
