@@ -30,7 +30,9 @@ const createOwner = async (req, res) => {
 
         if(newOwner){
             let statusCode = 201;
-            return res.status(statusCode).json({message: httpCodes[statusCode]});
+            return res.status(statusCode).json(
+                {message: httpCodes[statusCode],
+                owner: newOwner});
         }
         else{
             let statusCode = 500;

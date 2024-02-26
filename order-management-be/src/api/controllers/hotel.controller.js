@@ -3,9 +3,6 @@ import { hotelCreation } from "../services/hotel.service.js";
 import validateHotel from "../validations/hotel.validations.js";
 import { httpCodes } from "../utils/common.js";
 
-function validateRequestBody(reqBody) {
-    return hotelValidation.validate(reqBody, { abortEarly: false });
-}
 const createHotel = async (req, res) => {
     try{
         
@@ -28,7 +25,9 @@ const createHotel = async (req, res) => {
 
         if(newHotel){
             let statusCode = 201;
-            return res.status(statusCode).json({message: httpCodes[statusCode]});
+            return res.status(statusCode).json(
+                {message: httpCodes[statusCode],
+                hotel: newHotel});
         }
         else{
             let statusCode = 500;
