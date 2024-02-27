@@ -27,7 +27,7 @@ const hotelModel = (sequelize, DataTypes) => (
         active: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: true
+            defaultValue: false
         },  
         logo: {
             type: DataTypes.STRING,
@@ -36,14 +36,6 @@ const hotelModel = (sequelize, DataTypes) => (
         deletedAt: {
             type: DataTypes.DATE,
             allowNull: true
-        },
-        ownerId: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            references: {
-                model: 'owners',
-                key: 'id'
-            }
         }
     })
 )

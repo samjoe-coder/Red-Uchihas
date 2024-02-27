@@ -7,7 +7,7 @@ const startServer = async () => {
         // Establish database connection
         await initDb();
         console.log("🌐 Database connection established successfully.");
-
+        
         // Start the server
         app.listen(env.app.port, () => {
             console.log('Server started successfully 🚀');
@@ -24,3 +24,4 @@ const startServer = async () => {
 };
 
 startServer();
+

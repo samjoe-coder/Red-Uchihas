@@ -41,6 +41,7 @@ const defineModels = (sequelize) => {
     db.owners = ownerModel(sequelize, DataTypes);
     db.customers = customerModel(sequelize, DataTypes);
     db.hotels = hotelModel(sequelize, DataTypes);
+    db.hotels.belongsTo(db.owners, { foreignKey: 'ownerId' });
     db.menus = menuModel(sequelize, DataTypes);
     db.tables = tableModel(sequelize, DataTypes);
     db.orders = orderModel(sequelize, DataTypes);
@@ -60,6 +61,7 @@ const initDb = async () => {
         // Sync models with database
         await sequelize.sync({ force: false });
         console.log("🔄 Database synchronized successfully");
+
     } catch (error) {
         throw error;
     }
